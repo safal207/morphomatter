@@ -137,9 +137,9 @@ Exact CI result:
 | brute-force | `61/64` | `6.440` | `7` |
 | random (16×64) | `1024/1024` | `1.715` | `4` |
 
-The preregistered paired median effort advantage `(cooperative - learned)` is `0.965`, with 95% bootstrap interval `[0.960, 1.060]`. The preregistered interpretation boundary therefore returns `BOUNDED_GENERALIZATION_SIGNAL`.
+The preregistered paired median effort advantage `(cooperative - learned)` is `0.965`, with 95% bootstrap interval `[0.960, 1.060]`. The frozen interpretation boundary returns `BOUNDED_GENERALIZATION_SIGNAL`.
 
-The crucial limitation is that **all 1024 random schedules also succeed**. Recovery success is saturated in this toy regime. Experiment 005 therefore supports only a narrower claim: the learned policy generalizes **lower declared control effort**, not unique recovery capability or improved success probability.
+The crucial limitation is that **all 1024 random schedules also succeed**. Success is saturated in this toy regime. Experiment 005 therefore supports only the narrower statement that the learned policy generalizes **lower declared control effort** across the frozen software matrix. It does **not** show unique recovery capability, higher success probability, physical energy savings, or general AI superiority.
 
 Full result: [`docs/EXPERIMENT_005_RESULTS.md`](docs/EXPERIMENT_005_RESULTS.md).
 
