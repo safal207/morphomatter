@@ -52,6 +52,10 @@ The pinned run must:
 - replay to the exact final state;
 - remain completely disordered when nucleation probability is explicitly forced to zero.
 
+## Current pinned observation
+
+On the current seeded reference run, tick 24 ends with `77/81` ordered sites (`0.950617` ordered fraction). Across the run the trace contains `6` nucleation events, `74` frontier-growth events, and `77` commit events. GitHub CI executes the reference experiment as a smoke check; these counts are algorithmic reference observations, not physical measurements.
+
 ## Why this matters for MorphoMatter
 
 Experiment 001 showed that a controller can search condition space rather than place sites directly. Experiment 002 adds a qualitatively different idea: **the external controller only needs to create favorable transition conditions; once nuclei exist, local interaction can carry part of the transformation.**
