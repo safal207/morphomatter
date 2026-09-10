@@ -20,3 +20,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python experiments/nucleation_frontier.py
+      - name: Run Experiment 003 smoke
+        env:
+          PYTHONPATH: src
+        run: python experiments/damage_recovery.py
