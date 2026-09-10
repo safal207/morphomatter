@@ -31,7 +31,7 @@ The sibling COSMIC-ORGANICS project already contains useful algorithmic patterns
 
 See [`docs/COSMIC_BRIDGE.md`](docs/COSMIC_BRIDGE.md).
 
-## v0 experiment
+## Experiment 001 — transition-condition map
 
 The first milestone is deliberately small:
 
@@ -42,7 +42,7 @@ The first milestone is deliberately small:
 5. Replay the trace and verify the final state.
 6. Use a conventional path-gradient controller as the baseline that any future AI controller must beat.
 
-## Transition Map Explorer
+### Transition Map Explorer
 
 `TransitionMapExplorer` separates two questions that should not be conflated:
 
@@ -58,6 +58,29 @@ PYTHONPATH=src python experiments/transition_map.py
 ```
 
 The example scans a 45-point dimensionless condition grid around a seeded 5×5 lattice and then searches for a schedule reaching organization score `>= 0.90`.
+
+## Experiment 002 — nucleation and moving frontier
+
+Experiment 002 asks a stronger question: can global conditions make **rare nuclei** appear and then let **local coupling** carry an ordering frontier through the lattice?
+
+The pinned toy schedule uses two stages:
+
+```text
+stage 1: higher direct drive → rare nucleation
+stage 2: lower direct drive + stronger local coupling → frontier propagation
+```
+
+The seeded model records `nucleation`, `frontier_growth`, and `commit` events with transition probability, deterministic pseudo-random draw, local neighbor order, and the conditions used for each step. The trace must replay exactly.
+
+Run it:
+
+```bash
+PYTHONPATH=src python experiments/nucleation_frontier.py
+```
+
+The reference acceptance boundary is at least `90%` ordered sites by tick 24 under the pinned dimensionless seed/configuration. This is an algorithmic observation, **not a physical crystallization result**.
+
+See [`docs/EXPERIMENT_002_NUCLEATION.md`](docs/EXPERIMENT_002_NUCLEATION.md).
 
 ## Verify
 
