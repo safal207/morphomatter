@@ -82,11 +82,42 @@ The pinned seed reaches `77/81` ordered sites (`0.950617`) at tick 24. The refer
 
 See [`docs/EXPERIMENT_002_NUCLEATION.md`](docs/EXPERIMENT_002_NUCLEATION.md).
 
+## Experiment 003 — damage and recovery controls
+
+Experiment 003 rebuilds the pinned Experiment 002 state, destroys a fixed central region, then compares three recovery strategies on the **same damaged state and same deterministic stochastic surface**:
+
+```text
+A. brief renucleation + low drive + strong local coupling
+B. same renucleation pulse + low drive + no coupling
+C. high direct drive + no coupling
+```
+
+The pinned damage removes exactly `20` ordered sites, dropping the reference from `77/81` ordered to `57/81` ordered.
+
+Under recovery seed `11` and the declared 12-tick schedules:
+
+| Strategy | Final ordered | First tick ≥90% | Declared control effort |
+|---|---:|---:|---:|
+| cooperative coupling | `81/81` (`1.000000`) | `5` | `3.040` |
+| no coupling | `73/81` (`0.901235`) | `12` | `3.540` |
+| brute-force high drive | `80/81` (`0.987654`) | `7` | `11.040` |
+
+The cooperative recovery contains renucleation, frontier-growth, and commit events and replays exactly from the damaged state. The control-effort score is a dimensionless algorithmic baseline, **not physical energy**.
+
+Run it:
+
+```bash
+PYTHONPATH=src python experiments/damage_recovery.py
+```
+
+See [`docs/EXPERIMENT_003_DAMAGE_RECOVERY.md`](docs/EXPERIMENT_003_DAMAGE_RECOVERY.md).
+
 ## Verify
 
 ```bash
 PYTHONPATH=src python -m unittest discover -s tests -v
 PYTHONPATH=src python experiments/nucleation_frontier.py
+PYTHONPATH=src python experiments/damage_recovery.py
 ```
 
 ## Non-claims
@@ -97,7 +128,7 @@ This repository does not yet establish:
 - nanoscale robots;
 - a calibrated phase diagram;
 - AI superiority over conventional control;
-- self-repair in a physical system;
+- physical self-repair;
 - physical energy, speed, or scaling advantages.
 
-The current explorer's control cost is a declared algorithmic baseline, **not physical energy**. The next scientific milestone is calibration against a declared physical experiment and comparison of learned control against strong conventional baselines.
+The current explorer and recovery control-effort metrics are declared algorithmic baselines, **not physical energy**. The next scientific milestone is calibration against a declared physical experiment and comparison of learned control against strong conventional baselines.
