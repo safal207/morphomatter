@@ -42,7 +42,24 @@ The first milestone is deliberately small:
 5. Replay the trace and verify the final state.
 6. Use a conventional path-gradient controller as the baseline that any future AI controller must beat.
 
-## Run
+## Transition Map Explorer
+
+`TransitionMapExplorer` separates two questions that should not be conflated:
+
+- **phase-map scan**: hold one condition point for a declared number of steps and record the resulting organization score, dominant phase, ordered fraction and transition count;
+- **schedule search**: search a bounded sequence of condition points for a low-declared-cost route to a target organization score.
+
+The v0 search is intentionally fail-closed when `memory_decay != 0`. With hidden path memory, phase labels alone are not a sufficient search state.
+
+Run the example:
+
+```bash
+PYTHONPATH=src python experiments/transition_map.py
+```
+
+The example scans a 45-point dimensionless condition grid around a seeded 5×5 lattice and then searches for a schedule reaching organization score `>= 0.90`.
+
+## Verify
 
 ```bash
 PYTHONPATH=src python -m unittest discover -s tests -v
@@ -57,6 +74,6 @@ This repository does not yet establish:
 - a calibrated phase diagram;
 - AI superiority over conventional control;
 - self-repair in a physical system;
-- energy, speed, or scaling advantages.
+- physical energy, speed, or scaling advantages.
 
-The next scientific milestone is calibration against a declared physical experiment and comparison of learned control against strong conventional baselines.
+The current explorer's control cost is a declared algorithmic baseline, **not physical energy**. The next scientific milestone is calibration against a declared physical experiment and comparison of learned control against strong conventional baselines.
