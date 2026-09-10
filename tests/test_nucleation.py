@@ -22,7 +22,7 @@ class NucleationLatticeTests(unittest.TestCase):
         model = NucleationLattice(config=config)
         schedule = (
             [Conditions(drive=0.45, coupling_scale=1.0, threshold_scale=0.8)] * 2
-            + [Conditions(drive=0.12, coupling_scale=1.5, threshold_scale=0.8)] * 18
+            + [Conditions(drive=0.12, coupling_scale=1.5, threshold_scale=0.8)] * 22
         )
         model.run(schedule)
 
@@ -30,7 +30,7 @@ class NucleationLatticeTests(unittest.TestCase):
         self.assertIn("nucleation", mechanisms)
         self.assertIn("frontier_growth", mechanisms)
         self.assertIn("commit", mechanisms)
-        self.assertGreaterEqual(model.ordered_fraction(), 0.85)
+        self.assertGreaterEqual(model.ordered_fraction(), 0.90)
 
     def test_trace_replays_exactly(self):
         config = NucleationConfig(width=5, height=5, seed=3)
