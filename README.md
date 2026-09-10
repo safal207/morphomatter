@@ -78,7 +78,7 @@ Run it:
 PYTHONPATH=src python experiments/nucleation_frontier.py
 ```
 
-The reference acceptance boundary is at least `90%` ordered sites by tick 24 under the pinned dimensionless seed/configuration. This is an algorithmic observation, **not a physical crystallization result**.
+The pinned seed reaches `77/81` ordered sites (`0.950617`) at tick 24. The reference trace contains `6` nucleation, `74` frontier-growth, and `77` commit events. These are reproducible algorithmic observations, **not physical crystallization measurements**.
 
 See [`docs/EXPERIMENT_002_NUCLEATION.md`](docs/EXPERIMENT_002_NUCLEATION.md).
 
@@ -86,6 +86,7 @@ See [`docs/EXPERIMENT_002_NUCLEATION.md`](docs/EXPERIMENT_002_NUCLEATION.md).
 
 ```bash
 PYTHONPATH=src python -m unittest discover -s tests -v
+PYTHONPATH=src python experiments/nucleation_frontier.py
 ```
 
 ## Non-claims
