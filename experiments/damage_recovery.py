@@ -4,7 +4,7 @@ This is a pinned dimensionless comparison, not a physical self-healing result.
 All recovery strategies start from the same damaged state and use the same
 recovery seed so the stochastic surface is held fixed.
 """
-from morphomatter import Conditions
+from morphomatter import Conditions, Phase
 from morphomatter.nucleation import NucleationConfig, NucleationLattice
 from morphomatter.recovery import apply_damage, compare_recovery_strategies, rectangular_sites
 
@@ -14,13 +14,13 @@ ASSEMBLY = (
     + [Conditions(drive=0.12, coupling_scale=1.5, threshold_scale=0.8)] * 22
 )
 
-RENucleation = Conditions(drive=0.55, coupling_scale=1.0, threshold_scale=0.8)
+RENUCLEATION = Conditions(drive=0.55, coupling_scale=1.0, threshold_scale=0.8)
 COOPERATIVE_PROPAGATION = Conditions(drive=0.12, coupling_scale=1.5, threshold_scale=0.8)
 NO_COUPLING_PROPAGATION = Conditions(drive=0.12, coupling_scale=0.0, threshold_scale=0.8)
 BRUTE_FORCE = Conditions(drive=0.80, coupling_scale=0.0, threshold_scale=0.8)
 
 
-def build_reference_state() -> tuple:
+def build_reference_state() -> tuple[Phase, ...]:
     model = NucleationLattice(config=NucleationConfig(width=9, height=9, seed=26))
     model.run(ASSEMBLY)
     if abs(model.ordered_fraction() - (77 / 81)) > 1e-12:
@@ -40,8 +40,8 @@ def main() -> None:
     )
     damage = apply_damage(reference, damage_sites)
 
-    cooperative = [RENucleation] * 2 + [COOPERATIVE_PROPAGATION] * 10
-    no_coupling = [RENucleation] * 2 + [NO_COUPLING_PROPAGATION] * 10
+    cooperative = [RENUCLEATION] * 2 + [COOPERATIVE_PROPAGATION] * 10
+    no_coupling = [RENUCLEATION] * 2 + [NO_COUPLING_PROPAGATION] * 10
     brute_force = [BRUTE_FORCE] * 12
 
     results = compare_recovery_strategies(
