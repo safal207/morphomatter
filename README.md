@@ -118,15 +118,36 @@ Experiment 004 removes the hand-written recovery schedule from the central compa
 
 The held-out case is a different central `5×5` damage geometry with recovery seed `37`, neither of which appears in training. The learner is compared against the fixed cooperative heuristic, brute-force high drive, and 32 deterministic random schedules. Effort is accumulated only until each strategy first crosses the `90%` recovery goal.
 
+The held-out learned path was `cooperate → cooperate → cooperate → hold → hold → hold`, reaching `0.925926` ordered at tick `6` with declared effort `0.840`, versus `1.900` for the fixed cooperative heuristic at the same tick.
+
+See [`docs/EXPERIMENT_004_LEARNED_RECOVERY.md`](docs/EXPERIMENT_004_LEARNED_RECOVERY.md).
+
+## Experiment 005 — preregistered generalization matrix
+
+Experiment 005 freezes the evaluation surface **before execution** and tests the same learned policy over `8` unseen damage geometries × `8` unseen recovery seeds = `64` held-out cases. Random control uses 16 deterministic schedules per case (`1024` runs total).
+
+Preregistration: [`docs/EXPERIMENT_005_PREREGISTRATION.md`](docs/EXPERIMENT_005_PREREGISTRATION.md).
+
+Exact CI result:
+
+| Strategy | Success | Median effort to goal | Median goal tick |
+|---|---:|---:|---:|
+| learned | `64/64` | **`0.470`** | `4` |
+| cooperative | `64/64` | `1.520` | `4` |
+| brute-force | `61/64` | `6.440` | `7` |
+| random (16×64) | `1024/1024` | `1.715` | `4` |
+
+The preregistered paired median effort advantage `(cooperative - learned)` is `0.965`, with 95% bootstrap interval `[0.960, 1.060]`. The preregistered interpretation boundary therefore returns `BOUNDED_GENERALIZATION_SIGNAL`.
+
+The crucial limitation is that **all 1024 random schedules also succeed**. Recovery success is saturated in this toy regime. Experiment 005 therefore supports only a narrower claim: the learned policy generalizes **lower declared control effort**, not unique recovery capability or improved success probability.
+
+Full result: [`docs/EXPERIMENT_005_RESULTS.md`](docs/EXPERIMENT_005_RESULTS.md).
+
 Run it:
 
 ```bash
-PYTHONPATH=src python experiments/learned_recovery.py
+PYTHONPATH=src python experiments/generalization_matrix.py
 ```
-
-The acceptance boundary requires the learned policy to recover the held-out state within 12 ticks, replay exactly, and use less declared control effort to goal than the cooperative heuristic, brute-force baseline, and median random schedule. It is **not** required to beat every lucky random draw or be fastest on every axis.
-
-See [`docs/EXPERIMENT_004_LEARNED_RECOVERY.md`](docs/EXPERIMENT_004_LEARNED_RECOVERY.md).
 
 ## Verify
 
@@ -135,6 +156,7 @@ PYTHONPATH=src python -m unittest discover -s tests -v
 PYTHONPATH=src python experiments/nucleation_frontier.py
 PYTHONPATH=src python experiments/damage_recovery.py
 PYTHONPATH=src python experiments/learned_recovery.py
+PYTHONPATH=src python experiments/generalization_matrix.py
 ```
 
 ## Non-claims
@@ -148,4 +170,4 @@ This repository does not yet establish:
 - physical self-repair;
 - physical energy, speed, or scaling advantages.
 
-The explorer, recovery, and learned-policy cost metrics are declared algorithmic baselines, **not physical energy**. Experiment 004 is a bounded software ML result only. The next scientific milestone is broader held-out evaluation with uncertainty estimates, then calibration against a declared physical experiment.
+The explorer, recovery, and learned-policy cost metrics are declared algorithmic baselines, **not physical energy**. Experiments 004–005 are bounded software ML results only. The next useful software milestone is a harder, preregistered regime where random recovery is no longer saturated, followed by calibration against one declared physical experiment.
