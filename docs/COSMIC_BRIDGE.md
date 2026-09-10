@@ -10,6 +10,7 @@ MorphoMatter does **not** treat COSMIC-ORGANICS as a physical model. The transfe
 4. **Hierarchical coupling** — local domains may organize strongly before global structure aligns.
 5. **Active frontier** — future optimization should update only regions whose conditions or neighborhood changed, after equivalence is proven against a dense reference.
 6. **Transition trace + replay** — the controller must not be allowed to rewrite evidence; completed transitions are recorded and replayable.
+7. **Nucleation/frontier hypothesis** — MorphoMatter Experiment 002 adds seeded rare local transitions followed by neighbor-assisted propagation. This is a new MorphoMatter toy mechanism, not a physical claim inherited from COSMIC.
 
 ## MorphoMatter translation
 
@@ -29,6 +30,8 @@ active frontier            moving region of material change
 ## Critical boundary
 
 The current v0 model is **dimensionless and algorithmic**. `drive`, `coupling_scale`, and `threshold_scale` are not temperature, pressure, magnetic field, viscosity, pH, or any other calibrated material quantity.
+
+Experiment 002 also introduces dimensionless nucleation/frontier probabilities. Their names describe the algorithmic mechanism only; they are not fitted nucleation rates, free-energy barriers, or kinetic constants.
 
 The scientific next step is therefore not to claim smart matter. It is to define a measurable physical system and learn a mapping:
 
