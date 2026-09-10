@@ -1,0 +1,62 @@
+# MorphoMatter
+
+**Goal-programmable matter research sandbox.**
+
+> Don't command the particles. Create the conditions in which the desired transition becomes likely.
+
+MorphoMatter explores whether a controller can steer a population of simple interacting elements by changing **environmental conditions**, rather than micromanaging individual elements.
+
+## Core hypothesis
+
+```text
+goal
+  ↓
+controller
+  ↓
+condition schedule
+  ↓
+local interactions + transition thresholds
+  ↓
+self-organization
+  ↓
+observed state + transition trace
+  └──────────── feedback ────────────┘
+```
+
+The first software model is intentionally **dimensionless**. It is not a calibrated model of crystallization, magnetic colloids, water, or any specific material.
+
+## Why COSMIC-ORGANICS matters
+
+The sibling COSMIC-ORGANICS project already contains useful algorithmic patterns: explicit transition states, local coupling, thresholds, path-gradient feedback, sparse active frontiers, and separately checkable transition traces. MorphoMatter reuses those ideas as research abstractions without claiming that COSMIC is a law of physics.
+
+See [`docs/COSMIC_BRIDGE.md`](docs/COSMIC_BRIDGE.md).
+
+## v0 experiment
+
+The first milestone is deliberately small:
+
+1. Start with a disordered 2D lattice.
+2. Apply only global/dimensionless transition conditions.
+3. Cross `DISORDERED → METASTABLE → ORDERED` without commanding sites individually.
+4. Record every completed transition.
+5. Replay the trace and verify the final state.
+6. Use a conventional path-gradient controller as the baseline that any future AI controller must beat.
+
+## Run
+
+```bash
+PYTHONPATH=src python -m unittest discover -s tests -v
+```
+
+## Non-claims
+
+This repository does not yet establish:
+
+- a physical programmable material;
+- nanoscale robots;
+- a calibrated phase diagram;
+- AI superiority over conventional control;
+- self-repair in a physical system;
+- energy, speed, or scaling advantages.
+
+The next scientific milestone is calibration against a declared physical experiment and comparison of learned control against strong conventional baselines.
