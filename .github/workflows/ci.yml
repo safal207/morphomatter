@@ -24,3 +24,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python experiments/damage_recovery.py
+      - name: Run Experiment 004 smoke
+        env:
+          PYTHONPATH: src
+        run: python experiments/learned_recovery.py
