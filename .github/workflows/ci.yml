@@ -48,3 +48,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python experiments/action_space_boundary.py
+      - name: Run Experiment 010 preregistered continuous MPC probe
+        env:
+          PYTHONPATH: src
+        run: python experiments/continuous_mpc_boundary.py
