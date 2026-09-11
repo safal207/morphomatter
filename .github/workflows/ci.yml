@@ -1,0 +1,58 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run tests
+        env:
+          PYTHONPATH: src
+        run: python -m unittest discover -s tests -v
+      - name: Run Experiment 002 smoke
+        env:
+          PYTHONPATH: src
+        run: python experiments/nucleation_frontier.py
+      - name: Run Experiment 003 smoke
+        env:
+          PYTHONPATH: src
+        run: python experiments/damage_recovery.py
+      - name: Run Experiment 004 smoke
+        env:
+          PYTHONPATH: src
+        run: python experiments/learned_recovery.py
+      - name: Run Experiment 005 preregistered matrix
+        env:
+          PYTHONPATH: src
+        run: python experiments/generalization_matrix.py
+      - name: Run Experiment 006 preregistered hard regime
+        env:
+          PYTHONPATH: src
+        run: python experiments/hard_transition_regime.py
+      - name: Run Experiment 007 preregistered boundary search
+        env:
+          PYTHONPATH: src
+        run: python experiments/controllability_boundary.py
+      - name: Run Experiment 008 preregistered rich-state test
+        env:
+          PYTHONPATH: src
+        run: python experiments/rich_state_boundary.py
+      - name: Run Experiment 009 preregistered action-space test
+        env:
+          PYTHONPATH: src
+        run: python experiments/action_space_boundary.py
+      - name: Run Experiment 010 preregistered continuous MPC probe
+        env:
+          PYTHONPATH: src
+        run: python experiments/continuous_mpc_boundary.py
+      - name: Run Experiment 011 preregistered critical surfaces
+        env:
+          PYTHONPATH: src
+        run: python experiments/critical_transition_surfaces.py
