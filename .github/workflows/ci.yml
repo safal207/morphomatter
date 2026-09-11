@@ -32,3 +32,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python experiments/generalization_matrix.py
+      - name: Run Experiment 006 preregistered hard regime
+        env:
+          PYTHONPATH: src
+        run: python experiments/hard_transition_regime.py
