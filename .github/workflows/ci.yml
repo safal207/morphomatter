@@ -60,3 +60,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python experiments/geometry_transition_landscape.py
+      - name: Run Experiment 013 preregistered PDE transport geometry
+        env:
+          PYTHONPATH: src
+        run: python experiments/pde_transport_geometry.py
