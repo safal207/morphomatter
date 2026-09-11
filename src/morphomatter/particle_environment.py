@@ -170,3 +170,25 @@ def baseline_roots_reproduce_exp016() -> bool:
         and abs(trap - EXP016_TRAP_ROOT)
         <= ROOT_REPRO_TOLERANCE * max(1.0, abs(EXP016_TRAP_ROOT))
     )
+
+
+def interface_control_value() -> float:
+    """Recompute the frozen Experiment 015 hard theta=180 C1 control."""
+    from .interface_chemistry import external_interface_c1
+    from .nucleation import NucleationConfig
+
+    hard = NucleationConfig(
+        width=9,
+        height=9,
+        seed=0,
+        spontaneous_rate=0.002,
+        nucleation_drive_gain=0.18,
+        frontier_base=0.03,
+        frontier_neighbor_gain=0.50,
+        frontier_drive_gain=0.12,
+        commit_base=0.14,
+        commit_neighbor_gain=0.30,
+        commit_drive_gain=0.25,
+        barrier=0.16,
+    )
+    return external_interface_c1(hard, 180.0, threshold_scale=0.80)
