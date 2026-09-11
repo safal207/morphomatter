@@ -44,3 +44,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python experiments/rich_state_boundary.py
+      - name: Run Experiment 009 preregistered action-space test
+        env:
+          PYTHONPATH: src
+        run: python experiments/action_space_boundary.py
