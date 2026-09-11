@@ -52,3 +52,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python experiments/continuous_mpc_boundary.py
+      - name: Run Experiment 011 preregistered critical surfaces
+        env:
+          PYTHONPATH: src
+        run: python experiments/critical_transition_surfaces.py
