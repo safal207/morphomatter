@@ -56,3 +56,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python experiments/critical_transition_surfaces.py
+      - name: Run Experiment 012 preregistered geometry landscape
+        env:
+          PYTHONPATH: src
+        run: python experiments/geometry_transition_landscape.py
