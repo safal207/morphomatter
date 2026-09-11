@@ -72,3 +72,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python experiments/interface_chemistry_surface.py
+      - name: Run Experiment 016 preregistered environment screening window
+        env:
+          PYTHONPATH: src
+        run: python experiments/environment_screening_window.py
