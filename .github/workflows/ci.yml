@@ -88,3 +88,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python experiments/orientation_kinetics_cycle.py
+      - name: Run Experiment 020 preregistered translational assembly
+        env:
+          PYTHONPATH: src
+        run: python experiments/translational_assembly.py
