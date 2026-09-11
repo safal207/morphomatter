@@ -38,7 +38,7 @@ class ParticleTopology:
         values = self.canonical_ports
         if turns == 0:
             return values
-        # Positive turns rotate N->E->S->W.  A port at canonical index i moves
+        # Positive turns rotate N->E->S->W. A port at canonical index i moves
         # to (i + turns) mod 4.
         rotated = [0.0, 0.0, 0.0, 0.0]
         for index, value in enumerate(values):
@@ -119,10 +119,7 @@ PARTICLE_BY_NAME = {item.name: item for item in PARTICLE_TOPOLOGIES}
 
 
 def _axial_ring6() -> ContactMotif:
-    edges = tuple(
-        ContactEdge(i, (i + 1) % 6, "E", "W")
-        for i in range(6)
-    )
+    edges = tuple(ContactEdge(i, (i + 1) % 6, "E", "W") for i in range(6))
     return ContactMotif("axial_ring6", 6, edges, expected_degree=2)
 
 
@@ -143,7 +140,7 @@ def _corner_loop4() -> ContactMotif:
 
 
 def _tri_ladder8() -> ContactMotif:
-    # Top row: 0..3, bottom row: 4..7.  Horizontal rows are periodic.
+    # Top row: 0..3, bottom row: 4..7. Horizontal rows are periodic.
     edges: list[ContactEdge] = []
     for offset in (0, 4):
         for x in range(4):
@@ -255,6 +252,21 @@ def exhaustive_optimum(
     if not isclose(topology.budget, DIRECTIONAL_BUDGET, rel_tol=0.0, abs_tol=TOLERANCE):
         raise ValueError("topology budget differs from frozen budget")
 
+    # Technical optimization only: the search space remains exactly 4^N as
+    # preregistered. Rotated port vectors and direction indices are cached so
+    # each assignment evaluates only numeric lookups and min operations.
+    ports_by_orientation = tuple(topology.oriented_ports(turns) for turns in range(4))
+    indexed_edges = tuple(
+        (
+            edge.u,
+            edge.v,
+            DIRECTION_INDEX[edge.direction_u],
+            DIRECTION_INDEX[edge.direction_v],
+        )
+        for edge in motif.edges
+    )
+    denominator = motif.node_count * DIRECTIONAL_BUDGET
+
     best_pair = (-1.0, -1.0)
     best_total = -1.0
     canonical: tuple[int, ...] | None = None
@@ -263,8 +275,24 @@ def exhaustive_optimum(
 
     for orientations in product(range(4), repeat=motif.node_count):
         assignments += 1
-        assignment = tuple(int(value) for value in orientations)
-        coverage, utilization, total = evaluate_assignment(topology, motif, assignment)
+        covered = 0
+        total = 0.0
+        for u, v, direction_u, direction_v in indexed_edges:
+            strength = min(
+                ports_by_orientation[orientations[u]][direction_u],
+                ports_by_orientation[orientations[v]][direction_v],
+            )
+            if strength > 0.0:
+                covered += 1
+            total += strength
+
+        coverage = covered / len(indexed_edges)
+        utilization = 2.0 * total / denominator
+        if utilization < -TOLERANCE or utilization > 1.0 + TOLERANCE:
+            raise ValueError(
+                f"budget utilization outside [0,1] for {topology.name}/{motif.name}: {utilization}"
+            )
+        utilization = min(1.0, max(0.0, utilization))
         pair = (coverage, utilization)
 
         better = (
@@ -279,6 +307,7 @@ def exhaustive_optimum(
             and abs(utilization - best_pair[1]) <= TOLERANCE
         )
 
+        assignment = tuple(int(value) for value in orientations)
         if better:
             best_pair = pair
             best_total = total
