@@ -84,3 +84,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python experiments/particle_anisotropy_structure.py
+      - name: Run Experiment 019 preregistered orientation kinetics cycle
+        env:
+          PYTHONPATH: src
+        run: python experiments/orientation_kinetics_cycle.py
