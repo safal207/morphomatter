@@ -149,6 +149,43 @@ Run it:
 PYTHONPATH=src python experiments/generalization_matrix.py
 ```
 
+## Experiment 006 — preregistered hard transition regime
+
+Experiment 006 deliberately makes recovery harder to test whether learned control gains **capability**, not only lower control effort. Before the first run it froze:
+
+- lower spontaneous nucleation;
+- a higher transition barrier;
+- larger held-out damage geometries removing `22–36` ordered sites;
+- a stricter `>= 0.92` recovery goal;
+- only `7` recovery ticks;
+- `8` unseen geometries × `8` unseen seeds = `64` cases;
+- `1024` random schedules as a pooled random baseline.
+
+Preregistration: [`docs/EXPERIMENT_006_PREREGISTRATION.md`](docs/EXPERIMENT_006_PREREGISTRATION.md). Deterministic statistical/random seeds were frozen before execution in [`docs/EXPERIMENT_006_PREREGISTRATION_ADDENDUM.md`](docs/EXPERIMENT_006_PREREGISTRATION_ADDENDUM.md).
+
+The first frozen hard-regime result is negative:
+
+| Strategy | Success | 95% Wilson interval |
+|---|---:|---:|
+| learned | `0/64` | `[0.000, 0.057]` |
+| cooperative | `0/64` | `[0.000, 0.057]` |
+| brute-force | `0/64` | `[0.000, 0.057]` |
+| random | `0/1024` | `[0.000, 0.004]` |
+
+All transition traces replayed exactly. The frozen interpretation is:
+
+`HARD_REGIME_MIXED_OR_NEGATIVE`
+
+Experiment 006 therefore does **not** show learned recovery capability. Instead, it identifies an upper software boundary: this exact barrier/rate/damage/horizon combination is too severe for every declared strategy in the current model/action space. The protocol is not retuned after observing the failure; any intermediate-difficulty boundary search must be a new experiment number.
+
+Full result: [`docs/EXPERIMENT_006_RESULTS.md`](docs/EXPERIMENT_006_RESULTS.md).
+
+Run it:
+
+```bash
+PYTHONPATH=src python experiments/hard_transition_regime.py
+```
+
 ## Verify
 
 ```bash
@@ -157,6 +194,7 @@ PYTHONPATH=src python experiments/nucleation_frontier.py
 PYTHONPATH=src python experiments/damage_recovery.py
 PYTHONPATH=src python experiments/learned_recovery.py
 PYTHONPATH=src python experiments/generalization_matrix.py
+PYTHONPATH=src python experiments/hard_transition_regime.py
 ```
 
 ## Non-claims
@@ -170,4 +208,4 @@ This repository does not yet establish:
 - physical self-repair;
 - physical energy, speed, or scaling advantages.
 
-The explorer, recovery, and learned-policy cost metrics are declared algorithmic baselines, **not physical energy**. Experiments 004–005 are bounded software ML results only. The next useful software milestone is a harder, preregistered regime where random recovery is no longer saturated, followed by calibration against one declared physical experiment.
+The explorer, recovery, and learned-policy cost metrics are declared algorithmic baselines, **not physical energy**. Experiments 004–006 are bounded software ML results only. Experiment 006 is a preserved negative result, not a physical limit.
