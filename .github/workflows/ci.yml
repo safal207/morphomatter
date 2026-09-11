@@ -68,3 +68,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python experiments/equal_flux_geometry.py
+      - name: Run Experiment 015 preregistered interface-affinity surface
+        env:
+          PYTHONPATH: src
+        run: python experiments/interface_chemistry_surface.py
