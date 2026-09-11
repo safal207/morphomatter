@@ -31,13 +31,21 @@ def interpolate_config(
     *,
     seed: int = 0,
 ) -> NucleationConfig:
-    """Linearly interpolate the preregistered transition-law fields."""
+    """Linearly interpolate the preregistered transition-law fields.
+
+    Exact endpoints are returned directly to avoid floating-point drift in
+    evidence-integrity checks. Interior points use the frozen linear rule.
+    """
 
     lam = float(lam)
     if not 0.0 <= lam <= 1.0:
         raise ValueError("lambda must be in [0, 1]")
     if easy.width != hard.width or easy.height != hard.height:
         raise ValueError("endpoint lattice dimensions must match")
+    if lam == 0.0:
+        return replace(easy, seed=int(seed))
+    if lam == 1.0:
+        return replace(hard, seed=int(seed))
 
     values = {
         field: getattr(easy, field) + lam * (getattr(hard, field) - getattr(easy, field))
