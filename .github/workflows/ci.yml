@@ -80,3 +80,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python experiments/particle_environment_matrix.py
+      - name: Run Experiment 018 preregistered directional topology structure test
+        env:
+          PYTHONPATH: src
+        run: python experiments/particle_anisotropy_structure.py
