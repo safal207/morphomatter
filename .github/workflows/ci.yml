@@ -36,3 +36,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python experiments/hard_transition_regime.py
+      - name: Run Experiment 007 preregistered boundary search
+        env:
+          PYTHONPATH: src
+        run: python experiments/controllability_boundary.py
