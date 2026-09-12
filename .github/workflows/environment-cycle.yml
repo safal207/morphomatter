@@ -1,0 +1,38 @@
+name: environment-cycle
+
+on:
+  push:
+    branches:
+      - exp/environment-coupled-cycle-v0
+  pull_request:
+    paths:
+      - src/morphomatter/**
+      - tests/test_environment_cycle.py
+      - experiments/environment_coupled_cycle.py
+      - docs/EXPERIMENT_021_PREREGISTRATION.md
+      - .github/workflows/environment-cycle.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate-environment-cycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run Exp021 integrity tests and frozen cycle
+        env:
+          PYTHONPATH: src
+        run: python experiments/environment_coupled_cycle.py
+      - name: Archive Exp021 summaries and full trajectories
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: experiment-021-${{ github.run_id }}
+          path: artifacts/experiment_021_*
+          if-no-files-found: warn
+          retention-days: 30
