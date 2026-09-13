@@ -76,3 +76,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: python experiments/environment_screening_window.py
+      - name: Run Experiment 017 preregistered particle-environment matrix
+        env:
+          PYTHONPATH: src
+        run: python experiments/particle_environment_matrix.py
