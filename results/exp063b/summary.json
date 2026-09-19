@@ -1,0 +1,30 @@
+{
+  "experiment": "063B",
+  "version": "063b-pair-v1",
+  "stage": "evaluation",
+  "scope": "FINITE_DIAGNOSTIC_PAIR_LOOKAHEAD_NOT_MATERIAL_PHYSICS",
+  "base_commit": "4089790a98897ab205efaba693b11c50c4600ef3",
+  "code_commit": "42262f23c9d1c47e9ab38db293d36db0c1fcf1c5",
+  "label": "PAIR_LOOKAHEAD_MIXED_OR_NO_GAIN",
+  "integrity_violations": 0,
+  "replay_checked": true,
+  "replay_failures": 0,
+  "legacy_source_sha256": "00ca001fc114d63e2e1b793f4195ff2609b3607e69ae8d774136c70e7f0c1ef3",
+  "protocol_sha256": "95a186b3c8217bfdfb7ae6b1520b25d784198e66a5fe9c019d5b109fb7d2bdd9",
+  "source_sha256": "6a72524417e19bb7faacbd5adfb308a2b35f922af8ca19e8963c1504f9fb76fa",
+  "records_sha256": "101a0a6b09b1a515ef209f299133a4a6cbf26681533c5420daa3fb5b1d422144",
+  "comparisons": {
+    "primary": {"candidate":"pair_value","comparator":"decision_value","mean_loss_reduction":0.4765625,"no_higher_wrong_count":false,"paired_world_bootstrap_95_interval":[-1.828125,2.7113281249999943],"worlds_better":27,"worlds_equal":88,"worlds_worse":13},
+    "secondary_descriptive": {"candidate":"pair_value","comparator":"information_gain","mean_loss_reduction":2.234375,"no_higher_wrong_count":false,"paired_world_bootstrap_95_interval":[-1.0861328124999998,5.883007812499997],"worlds_better":48,"worlds_equal":38,"worlds_worse":42}
+  },
+  "metrics": {
+    "cheapest": {"budget_violations":0,"correct_decisions":1296,"invalid_chains":0,"known_invalid_leakage":0,"mean_loss":32.421875,"mean_spent":11.5703125,"pair_selections":0,"receipt_rejections":0,"total_loss":4150.0,"withheld_decisions":1740,"worlds":128,"wrong_decisions":36},
+    "decision_value": {"budget_violations":0,"correct_decisions":2326,"invalid_chains":0,"known_invalid_leakage":0,"mean_loss":19.625,"mean_spent":11.96875,"pair_selections":0,"receipt_rejections":0,"total_loss":2512.0,"withheld_decisions":684,"worlds":128,"wrong_decisions":62},
+    "hold": {"budget_violations":0,"correct_decisions":0,"invalid_chains":0,"known_invalid_leakage":0,"mean_loss":48.203125,"mean_spent":0.0,"pair_selections":0,"receipt_rejections":0,"total_loss":6170.0,"withheld_decisions":3072,"worlds":128,"wrong_decisions":0},
+    "importance": {"budget_violations":0,"correct_decisions":1705,"invalid_chains":0,"known_invalid_leakage":0,"mean_loss":29.1015625,"mean_spent":11.609375,"pair_selections":0,"receipt_rejections":0,"total_loss":3725.0,"withheld_decisions":1309,"worlds":128,"wrong_decisions":58},
+    "information_gain": {"budget_violations":0,"correct_decisions":2335,"invalid_chains":0,"known_invalid_leakage":0,"mean_loss":21.3828125,"mean_spent":11.515625,"pair_selections":0,"receipt_rejections":0,"total_loss":2737.0,"withheld_decisions":669,"worlds":128,"wrong_decisions":68},
+    "pair_value": {"budget_violations":0,"correct_decisions":2383,"invalid_chains":0,"known_invalid_leakage":0,"mean_loss":19.1484375,"mean_spent":11.890625,"pair_selections":61,"receipt_rejections":0,"total_loss":2451.0,"withheld_decisions":619,"worlds":128,"wrong_decisions":70},
+    "random": {"budget_violations":0,"correct_decisions":1636,"invalid_chains":0,"known_invalid_leakage":0,"mean_loss":29.21875,"mean_spent":12.0,"pair_selections":0,"receipt_rejections":0,"total_loss":3740.0,"withheld_decisions":1388,"worlds":128,"wrong_decisions":48}
+  },
+  "world_seeds": [2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122,2123,2124,2125,2126,2127]
+}

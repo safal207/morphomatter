@@ -1,0 +1,46 @@
+name: Experiment 063B pair lookahead
+
+on:
+  pull_request:
+    paths:
+      - 'morphomatter/exp063b.py'
+      - 'experiments/exp063b*'
+      - 'tests/test_exp063b.py'
+      - '.github/workflows/exp063b.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pair-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CODE_COMMIT: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: All original and review regression tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/exp063b
+          python -m unittest discover -s tests -v 2>&1 | tee out/exp063b/unit-tests.log
+      - name: Frozen new-world pair benchmark and full trace replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m experiments.exp063b --stage evaluation --output out/exp063b --replay | tee out/exp063b/evaluation.log
+      - name: Upload source, tests and full evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp063b-${{ github.run_id }}
+          path: out/exp063b/
+          if-no-files-found: error
+          retention-days: 30
