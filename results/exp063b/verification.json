@@ -1,0 +1,54 @@
+{
+  "scope": "POST_RESULT_VERIFICATION_AND_PORTABILITY_DIAGNOSTICS_NOT_CONFIRMATORY",
+  "source_commit": "42262f23c9d1c47e9ab38db293d36db0c1fcf1c5",
+  "ci_run": 35454054825,
+  "ci_python": "3.11.16",
+  "local_python": "3.13.5",
+  "ci_artifact_id": 10587602047,
+  "archive_sha256": "ab2b91becf2c568308927706fb51ddc62ebe7302e85ce41449e0ae838d99aff9",
+  "artifact_integrity": {
+    "source_hash_checks": 10,
+    "source_hash_status": "PASS",
+    "record_hash_status": "PASS",
+    "records_checked": 896,
+    "ledger_chains_status": "PASS",
+    "receipt_to_dispatch_binding_status": "PASS",
+    "budget_and_plan_bounds_status": "PASS",
+    "terminal_loss_and_aggregate_recalculation_status": "PASS"
+  },
+  "unit_tests": {"ci_passed":50,"local_passed":50},
+  "ci_same_runtime_replay": {"records":896,"mismatches":0},
+  "unmodified_source_cross_version_reexecution": {
+    "records":896,
+    "exact_record_matches":0,
+    "endpoint_matches":873,
+    "endpoint_mismatches":23,
+    "status":"NOT_CROSS_VERSION_EXACTLY_REPRODUCIBLE",
+    "by_policy": {
+      "hold":{"records":128,"exact_record_matches":0,"matching_endpoints":128,"matching_selected_actions":128,"matching_terminal_labels":128,"ci_loss":6170.0,"local_loss":6170.0,"ci_wrong":0,"local_wrong":0},
+      "random":{"records":128,"exact_record_matches":0,"matching_endpoints":128,"matching_selected_actions":128,"matching_terminal_labels":128,"ci_loss":3740.0,"local_loss":3740.0,"ci_wrong":48,"local_wrong":48},
+      "cheapest":{"records":128,"exact_record_matches":0,"matching_endpoints":128,"matching_selected_actions":128,"matching_terminal_labels":128,"ci_loss":4150.0,"local_loss":4150.0,"ci_wrong":36,"local_wrong":36},
+      "information_gain":{"records":128,"exact_record_matches":0,"matching_endpoints":107,"matching_selected_actions":7,"matching_terminal_labels":105,"ci_loss":2737.0,"local_loss":2774.0,"ci_wrong":68,"local_wrong":72},
+      "importance":{"records":128,"exact_record_matches":0,"matching_endpoints":128,"matching_selected_actions":128,"matching_terminal_labels":128,"ci_loss":3725.0,"local_loss":3725.0,"ci_wrong":58,"local_wrong":58},
+      "decision_value":{"records":128,"exact_record_matches":0,"matching_endpoints":126,"matching_selected_actions":114,"matching_terminal_labels":125,"ci_loss":2512.0,"local_loss":2520.0,"ci_wrong":62,"local_wrong":62},
+      "pair_value":{"records":128,"exact_record_matches":0,"matching_endpoints":128,"matching_selected_actions":122,"matching_terminal_labels":128,"ci_loss":2451.0,"local_loss":2451.0,"ci_wrong":70,"local_wrong":70}
+    }
+  },
+  "sequential_sum_diagnostic": {
+    "change":"Temporary module-level sequential addition substituted for sum in exp063 and exp063b under Python 3.13.5; no source files modified",
+    "records":896,
+    "exact_record_matches":896,
+    "unmatched":0,
+    "interpretation":"Post-hoc numeric compatibility diagnostic. Not an actual independent Python 3.11 interpreter run, external model replication, or corrected primary result."
+  },
+  "numeric_kernel_caveat": {
+    "worlds_with_pair_selections":50,
+    "total_pair_selections":61,
+    "worlds_with_zero_pairs_but_different_action_sequences_vs_one_step":11,
+    "worlds_with_zero_pairs_but_different_loss_vs_one_step":1,
+    "interpretation":"Pair and one-step scorers use different numerical kernels, so this is not a fully numeric-kernel-matched horizon-only ablation."
+  },
+  "next_requirement":"Common numeric kernel, frozen near-tie rule and runtime matrix before a new-world horizon comparison",
+  "external_independent_review":false,
+  "scientific_source_modified_after_results":false
+}
