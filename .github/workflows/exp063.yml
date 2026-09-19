@@ -1,0 +1,46 @@
+name: Experiment 063 pilot
+
+on:
+  pull_request:
+    paths:
+      - 'morphomatter/**'
+      - 'experiments/exp063*'
+      - 'tests/test_exp063.py'
+      - '.github/workflows/exp063.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CODE_COMMIT: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Frozen-scope pilot with exact record replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          if test -f experiments/exp063_comparator_lock.json; then
+            python -m experiments.exp063 --stage evaluation --lock experiments/exp063_comparator_lock.json --output out/exp063 --replay
+          else
+            python -m experiments.exp063 --stage development --output out/exp063 --replay
+          fi
+      - name: Upload complete evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exp063-${{ github.run_id }}
+          path: out/exp063/
+          if-no-files-found: error
+          retention-days: 30

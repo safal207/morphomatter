@@ -1,0 +1,29 @@
+{
+  "code_commit": "7d246f0ef5108922711977d20a3826f42035c6a8",
+  "experiment": "063",
+  "manifest_sha256": "fb01893ec23cf7d6bee916fc1f9f601a2ddf091c78c72f350cf3db804a92d77d",
+  "metrics": {
+    "cheapest": {"budget_violations": 0, "correct_decisions": 1322, "invalid_ledger_chains": 0, "known_invalid_leakage": 0, "mean_loss": 33.0234375, "mean_spent": 11.609375, "total_loss": 4227.0, "withheld_decisions": 1709, "worlds": 128, "wrong_decisions": 41},
+    "decision_value": {"budget_violations": 0, "correct_decisions": 2384, "invalid_ledger_chains": 0, "known_invalid_leakage": 0, "mean_loss": 17.5625, "mean_spent": 12.0, "total_loss": 2248.0, "withheld_decisions": 632, "worlds": 128, "wrong_decisions": 56},
+    "hold": {"budget_violations": 0, "correct_decisions": 0, "invalid_ledger_chains": 0, "known_invalid_leakage": 0, "mean_loss": 47.734375, "mean_spent": 0.0, "total_loss": 6110.0, "withheld_decisions": 3072, "worlds": 128, "wrong_decisions": 0},
+    "importance": {"budget_violations": 0, "correct_decisions": 1736, "invalid_ledger_chains": 0, "known_invalid_leakage": 0, "mean_loss": 27.46875, "mean_spent": 11.6171875, "total_loss": 3516.0, "withheld_decisions": 1278, "worlds": 128, "wrong_decisions": 58},
+    "information_gain": {"budget_violations": 0, "correct_decisions": 2396, "invalid_ledger_chains": 0, "known_invalid_leakage": 0, "mean_loss": 20.6484375, "mean_spent": 11.5625, "total_loss": 2643.0, "withheld_decisions": 599, "worlds": 128, "wrong_decisions": 77},
+    "random": {"budget_violations": 0, "correct_decisions": 1553, "invalid_ledger_chains": 0, "known_invalid_leakage": 0, "mean_loss": 29.515625, "mean_spent": 12.0, "total_loss": 3778.0, "withheld_decisions": 1476, "worlds": 128, "wrong_decisions": 43}
+  },
+  "primary": {
+    "comparator": "information_gain",
+    "comparator_lock_sha256": "80acc71b00750512b2f806dd36cce20611d10d50096a701c124798c8dca4d7a3",
+    "label": "PILOT_MIXED_OR_NO_GAIN",
+    "mean_paired_loss_reduction": 3.0859375,
+    "no_higher_observed_wrong_count": true,
+    "paired_bootstrap_95_interval": [-0.5861328124999998, 7.0625]
+  },
+  "records_sha256": "65bfb10e4897825c6d64d9b331e3492e73b47990c53a88906e2b55efdc1c2c6b",
+  "replay_checked": true,
+  "replay_failures": 0,
+  "scope": "PILOT_ONLY_NOT_FULL_063_CONFIRMATORY_RESULT",
+  "source_sha256": "00ca001fc114d63e2e1b793f4195ff2609b3607e69ae8d774136c70e7f0c1ef3",
+  "stage": "evaluation",
+  "version": "063-pilot-v1",
+  "world_seeds": {"start": 1000, "stop_exclusive": 1128}
+}
