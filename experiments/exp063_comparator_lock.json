@@ -1,0 +1,17 @@
+{
+  "development_code_commit": "4027ee3ec3a0ac159d95e2abdf0757593e8aa94e",
+  "development_metrics": {
+    "cheapest": {"budget_violations": 0, "correct_decisions": 345, "invalid_ledger_chains": 0, "known_invalid_leakage": 0, "mean_loss": 30.09375, "mean_spent": 11.5625, "total_loss": 963.0, "withheld_decisions": 417, "worlds": 32, "wrong_decisions": 6},
+    "decision_value": {"budget_violations": 0, "correct_decisions": 604, "invalid_ledger_chains": 0, "known_invalid_leakage": 0, "mean_loss": 26.15625, "mean_spent": 12.0, "total_loss": 837.0, "withheld_decisions": 139, "worlds": 32, "wrong_decisions": 25},
+    "hold": {"budget_violations": 0, "correct_decisions": 0, "invalid_ledger_chains": 0, "known_invalid_leakage": 0, "mean_loss": 48.125, "mean_spent": 0.0, "total_loss": 1540.0, "withheld_decisions": 768, "worlds": 32, "wrong_decisions": 0},
+    "importance": {"budget_violations": 0, "correct_decisions": 454, "invalid_ledger_chains": 0, "known_invalid_leakage": 0, "mean_loss": 28.96875, "mean_spent": 11.59375, "total_loss": 927.0, "withheld_decisions": 297, "worlds": 32, "wrong_decisions": 17},
+    "information_gain": {"budget_violations": 0, "correct_decisions": 596, "invalid_ledger_chains": 0, "known_invalid_leakage": 0, "mean_loss": 21.5, "mean_spent": 11.46875, "total_loss": 688.0, "withheld_decisions": 154, "worlds": 32, "wrong_decisions": 18},
+    "random": {"budget_violations": 0, "correct_decisions": 424, "invalid_ledger_chains": 0, "known_invalid_leakage": 0, "mean_loss": 31.1875, "mean_spent": 12.0, "total_loss": 998.0, "withheld_decisions": 330, "worlds": 32, "wrong_decisions": 14}
+  },
+  "development_records_sha256": "f43630879e03af753e514d42bb22a8b70f34d7a8eb657358669fdf88d6318333",
+  "development_seeds": {"start": 0, "stop_exclusive": 32},
+  "manifest_sha256": "fb01893ec23cf7d6bee916fc1f9f601a2ddf091c78c72f350cf3db804a92d77d",
+  "selected_policy": "information_gain",
+  "source_sha256": "00ca001fc114d63e2e1b793f4195ff2609b3607e69ae8d774136c70e7f0c1ef3",
+  "version": "063-pilot-v1"
+}
